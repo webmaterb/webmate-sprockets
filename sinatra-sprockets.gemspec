@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = s.name
 
-  s.add_runtime_dependency 'sprockets',       '~> 2.0.0'
+  s.add_runtime_dependency 'sprockets',       '~> 2.0'
   s.add_runtime_dependency 'uglifier'
   s.add_runtime_dependency 'closure-compiler'
   s.add_runtime_dependency 'yui-compressor'
@@ -33,6 +33,6 @@ Gem::Specification.new do |s|
     "lib/sinatra/sprockets/static_compiler.rb",
     "lib/sinatra/sprockets/version.rb"
   ]
-  
+
   s.require_paths << "lib"
 end
