@@ -10,9 +10,9 @@ namespace :assets do
   namespace :precompile do
     task :all => ["environment"] do
       config = Sinatra::Sprockets.config
-      config.compile = true
-      config.digest  = true
-      config.digests = {}
+      config.compile ||= true
+      config.digest  ||= true
+      config.digests ||= {}
 
       env      = Sinatra::Sprockets.environment
       target   = File.join(config.app.settings.public_path, config.prefix)
