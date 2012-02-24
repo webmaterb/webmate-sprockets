@@ -16,8 +16,8 @@ module Sinatra
       end
       
       if config.compress_assets?
-        environment.js_compressor = Closure::Compiler.new
-        environment.css_compressor = YUI::CssCompressor.new
+        environment.js_compressor = config.js_compressor || Closure::Compiler.new
+        environment.css_compressor = config.css_compressor || YUI::CssCompressor.new
       else
         environment.js_compressor = false
         environment.css_compressor = false

@@ -11,7 +11,9 @@ module Sinatra
         :relative_url_root => ENV['RACK_RELATIVE_URL_ROOT'],
         :precompile => [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ], 
         :manifest_path => "public/assets",
-        :app => nil
+        :app => nil,
+        :js_compressor => nil,
+        :css_compressor => nil
       }
       OPTIONS = DEFAULTS.keys
       
