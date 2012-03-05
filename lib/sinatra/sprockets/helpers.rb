@@ -38,7 +38,7 @@ module Sinatra
         
         if sources.is_a?(Array)
           content_tag("video", options) do
-            sources.map { |source| tag("source", :src => source) }.join.html_safe
+            sources.map { |source| tag("source", :src => source) }.join
           end
         else
           options[:src] = asset_path(sources)
@@ -68,7 +68,7 @@ module Sinatra
             src = asset_path(source, :ext => 'js', :body => body, :digest => digest)
             content_tag("script", "", { "type" => "application/javascript", "src" => src }.merge!(options))
           end
-        end.join("\n").html_safe
+        end.join("\n")
       end
       
       def stylesheet_link_tag(*sources)
@@ -87,7 +87,7 @@ module Sinatra
             href = asset_path(source, :ext => 'css', :body => body, :protocol => :request, :digest => digest)
             tag("link", { "rel" => "stylesheet", "type" => "text/css", "media" => "screen", "href" => href }.merge!(options))
           end
-        end.join("\n").html_safe
+        end.join("\n")
       end
     
       def asset_path(source, options={})
@@ -97,7 +97,7 @@ module Sinatra
       end
     
       def tag(name, options = nil, open = false, escape = true)
-        "<#{name}#{tag_options(options, escape) if options}#{open ? ">" : " />"}".html_safe
+        "<#{name}#{tag_options(options, escape) if options}#{open ? ">" : " />"}"
       end
     
       def content_tag(name, content_or_options_with_block = nil, options = nil, escape = true, &block)
@@ -139,13 +139,13 @@ module Sinatra
               attrs << %(#{key}="#{final_value}")
             end
           end
-          " #{attrs.sort * ' '}".html_safe unless attrs.empty?
+          " #{attrs.sort * ' '}" unless attrs.empty?
         end
       end
     
       def content_tag_string(name, content, options, escape = true)
         tag_options = tag_options(options, escape) if options
-        "<#{name}#{tag_options}>#{escape ? ERB::Util.h(content) : content}</#{name}>".html_safe
+        "<#{name}#{tag_options}>#{escape ? ERB::Util.h(content) : content}</#{name}>"
       end
     end
   end
