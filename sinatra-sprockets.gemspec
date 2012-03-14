@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "sinatra/sprockets/version"
 
 Gem::Specification.new do |s|
-  s.name        = "sinatra-sprockets"
+  s.name        = "alphasights-sinatra-sprockets"
   s.version     = Sinatra::Sprockets::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["thegorgon"]
