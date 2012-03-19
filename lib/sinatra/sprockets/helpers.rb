@@ -18,7 +18,7 @@ module Sinatra
       def image_tag(source, options = {})
         digest = options.key?(:digest)  ? options.delete(:digest)  : config.digest_assets?
 
-        options[:src] = asset_path(source, digest: digest)
+        options[:src] = asset_path(source, :digest => digest)
 
         if size = options.delete(:size)
           options[:width], options[:height] = size.split("x") if size =~ %r{^\d+x\d+$}
