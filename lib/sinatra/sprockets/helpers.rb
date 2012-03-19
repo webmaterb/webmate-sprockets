@@ -92,7 +92,8 @@ module Sinatra
 
       def asset_path(source, options={})
         source = source.logical_path if source.respond_to?(:logical_path)
-        path = asset_paths.compute_public_path(source, config.prefix, options.merge(:body => true))
+        digest = options.key?(:digest) ? options.delete(:digest) : config.digest_assets?
+        path = asset_paths.compute_public_path(source, config.prefix, options.merge(:body => true, :digest => digest))
         options[:body] ? "#{path}?body=1" : path
       end
 
