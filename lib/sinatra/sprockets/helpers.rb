@@ -62,11 +62,11 @@ module Sinatra
           if debug && asset = asset_paths.asset_for(source, 'js')
             asset.to_a.map { |dep|
               src = asset_path(dep, :ext => 'js', :body => true, :digest => digest)
-              content_tag("script", "", { "type" => "application/javascript", "src" => src }.merge!(options))
+              content_tag("script", "", { "type" => "text/javascript", "src" => src }.merge!(options))
             }
           else
             src = asset_path(source, :ext => 'js', :body => body, :digest => digest)
-            content_tag("script", "", { "type" => "application/javascript", "src" => src }.merge!(options))
+            content_tag("script", "", { "type" => "text/javascript", "src" => src }.merge!(options))
           end
         end.join("\n")
       end
