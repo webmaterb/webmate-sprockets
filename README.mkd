@@ -8,11 +8,11 @@ Installation
 
 Run 
 
-    gem install sinatra-sprockets
+    gem install alphasights-sinatra-sprockets
 
 Or add
 
-    gem 'sinatra-sprockets'
+    gem 'alphasights-sinatra-sprockets'
     
 to your Gemfile
 
