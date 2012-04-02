@@ -19,6 +19,7 @@ module Sinatra
         digest = options.key?(:digest)  ? options.delete(:digest)  : config.digest_assets?
 
         options[:src] = asset_path(source, :digest => digest)
+        options[:alt] = options.fetch(:alt){ image_alt(source) }
 
         if size = options.delete(:size)
           options[:width], options[:height] = size.split("x") if size =~ %r{^\d+x\d+$}
@@ -147,6 +148,10 @@ module Sinatra
       def content_tag_string(name, content, options, escape = true)
         tag_options = tag_options(options, escape) if options
         "<#{name}#{tag_options}>#{escape ? ERB::Util.h(content) : content}</#{name}>"
+      end
+
+      def image_alt(source)
+        File.basename(source, '.*').sub(%r-[[:xdigit:]]{32}\z-, '')
       end
     end
   end
