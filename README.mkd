@@ -12,7 +12,7 @@ Run
 
 Or add
 
-    gem 'alphasights-sinatra-sprockets'
+    gem 'alphasights-sinatra-sprockets', require: 'sinatra/sprockets'
     
 to your Gemfile
 
