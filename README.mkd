@@ -21,25 +21,41 @@ Setup
 
 Sinatra Sprockets needs to be configured to work properly. In your server initialization, add a configuration :
 
-    Sinatra::Sprockets.configure do |config|
-      config.app = MyApp
-  
-      ['stylesheets', 'javascripts', 'images'].each do |dir|
-        config.append_path(File.join('app', 'assets', dir))
-      end
-    end
+``` ruby
+Sinatra::Sprockets.configure do |config|
+  config.app = MyApp
+
+  ['stylesheets', 'javascripts', 'images'].each do |dir|
+    config.append_path(File.join('app', 'assets', dir))
+  end
+end
+```
 
 The only required field is `app` which is necessary to translate app configuration to Sprockets. You will also want to `append_paths` as none are included by default. See Configuration for more information.
 
 Include `Sinatra::Sprockets::Helpers` as helpers in your application :
 
-    helpers Sinatra::Sprockets::Helpers
+``` ruby
+helpers Sinatra::Sprockets::Helpers
+```
 
 And mount the environment :
 
-    map '/assets' do
-      run Sinatra::Sprockets.environment
-    end
+``` ruby
+map '/assets' do
+  run Sinatra::Sprockets.environment
+end
+```
+
+Require files in layouts :
+
+``` ruby
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
+```
+
+`image_tag`, `favicon_link_tag`, `video_tag` and `audio_tag` are also provided.
+
 
 Configuration
 ------------
