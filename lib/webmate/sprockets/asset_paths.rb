@@ -1,14 +1,14 @@
-module Sinatra
+module Webmate
   module Sprockets
     class AssetPaths
       attr_reader :config
-      
+
       class AssetNotPrecompiledError < StandardError; end
-      
+
       def initialize(config)
         @config = config
       end
-      
+
       def asset_for(source, ext)
         source = source.to_s
         return nil if is_uri?(source)
@@ -17,7 +17,7 @@ module Sinatra
       rescue ::Sprockets::FileOutsidePaths
         nil
       end
-      
+
       def digest_for(logical_path)
         if config.digest_assets? && config.digests && (digest = config.digests[logical_path])
           digest
@@ -33,7 +33,7 @@ module Sinatra
           end
         end
       end
-      
+
       def compute_public_path(source, dir, options = {})
         source = source.to_s
         unless is_uri?(source)
@@ -44,11 +44,11 @@ module Sinatra
         end
         source
       end
-      
+
       def is_uri?(path)
         path =~ %r{^[-a-z]+://|^cid:|^//}
       end
-      
+
       def rewrite_host_and_protocol(source, protocol = nil)
         host = compute_asset_host(source)
         if host && !is_uri?(host)
@@ -60,11 +60,11 @@ module Sinatra
         end
         host ? "#{host}#{source}" : source
       end
-      
+
       def rewrite_relative_url_root(source, relative_url_root)
         relative_url_root && !source.starts_with?("#{relative_url_root}/") ? "#{relative_url_root}#{source}" : source
       end
-      
+
       def rewrite_asset_path(source, dir, options = {})
         if source[0] == ?/
           source
@@ -83,7 +83,7 @@ module Sinatra
           source
         end
       end
-      
+
       def compute_asset_host(source)
         if host = config.host
           if host.respond_to?(:call)
@@ -99,11 +99,11 @@ module Sinatra
           end
         end
       end
-      
+
       def default_protocol
         config.default_protocol || (request.nil?? :relative : :request)
       end
-      
+
       def compute_protocol(protocol)
         protocol ||= default_protocol
         case protocol
@@ -122,7 +122,7 @@ module Sinatra
       def arity_of(callable)
         callable.respond_to?(:arity) ? callable.arity : callable.method(:call).arity
       end
-      
+
       def invalid_asset_host!(help_message)
         raise ActionController::RoutingError, "This asset host cannot be computed without a request in scope. #{help_message}"
       end

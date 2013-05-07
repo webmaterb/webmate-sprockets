@@ -1,4 +1,4 @@
-module Sinatra
+module Webmate
   module Sprockets
     class StaticCompiler
       require 'fileutils'

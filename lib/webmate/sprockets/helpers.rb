@@ -1,4 +1,4 @@
-module Sinatra
+module Webmate
   module Sprockets
     module Helpers
       BOOLEAN_ATTRIBUTES = %w(disabled readonly multiple checked autobuffer
@@ -114,11 +114,11 @@ module Sinatra
       private
 
       def asset_paths
-        @asset_paths ||= AssetPaths.new(Sinatra::Sprockets.config)
+        @asset_paths ||= AssetPaths.new(Webmate::Sprockets.config)
       end
 
       def config
-        Sinatra::Sprockets.config
+        Webmate::Sprockets.config
       end
 
       def tag_options(options, escape = true)

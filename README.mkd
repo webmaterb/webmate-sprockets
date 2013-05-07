@@ -1,4 +1,4 @@
-Sinatra Sprockets!
+Webmate Sprockets!
 ====================
 
 Because Sprockets is cool, and Rails is cool, but they shouldn't get married.
@@ -6,23 +6,23 @@ Because Sprockets is cool, and Rails is cool, but they shouldn't get married.
 Installation
 ------------
 
-Run 
+Run
 
-    gem install alphasights-sinatra-sprockets
+    gem install alphasights-webmate-sprockets
 
 Or add
 
-    gem 'alphasights-sinatra-sprockets', require: 'sinatra/sprockets'
-    
+    gem 'alphasights-webmate-sprockets', require: 'webmate/sprockets'
+
 to your Gemfile
 
 Setup
 ------------
 
-Sinatra Sprockets needs to be configured to work properly. In your server initialization, add a configuration :
+Webmate Sprockets needs to be configured to work properly. In your server initialization, add a configuration :
 
 ``` ruby
-Sinatra::Sprockets.configure do |config|
+Webmate::Sprockets.configure do |config|
   config.app = MyApp
 
   ['stylesheets', 'javascripts', 'images'].each do |dir|
@@ -33,17 +33,17 @@ end
 
 The only required field is `app` which is necessary to translate app configuration to Sprockets. You will also want to `append_paths` as none are included by default. See Configuration for more information.
 
-Include `Sinatra::Sprockets::Helpers` as helpers in your application :
+Include `Webmate::Sprockets::Helpers` as helpers in your application :
 
 ``` ruby
-helpers Sinatra::Sprockets::Helpers
+helpers Webmate::Sprockets::Helpers
 ```
 
 And mount the environment :
 
 ``` ruby
 map '/assets' do
-  run Sinatra::Sprockets.environment
+  run Webmate::Sprockets.environment
 end
 ```
 
@@ -65,15 +65,10 @@ Sprockets requires a decent amount of configuration to work properly. Most of th
 
 `debug` : Boolean value. Should sprockets include assets for debugging? That is, should assets be rendered as individual included files for debugging or as the combination? When on, javascript and stylesheet debugging are much easier. Off by default, though you probably want to turn it on in development.
 
-`compile`: Boolean value. 
-  
+`compile`: Boolean value.
+
 
 Known Issues
 ------------
 
 There's no testing or documentation. I know. Want to help?
-
-Anything else?
-------------
-
-Questions, requests, concerns? Find me at [the gorgon lab](http://www.thegorgonlab.com)
