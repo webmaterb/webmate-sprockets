@@ -16,14 +16,14 @@ module Webmate
         environment.append_path(File.join(config.app.root, path))
       end
 
-      # require webmate assets
-      webmate_path = if Gem::Specification.respond_to?(:find_by_name)
-        Gem::Specification.find_by_name("webmate").full_gem_path
-      else
-        Gem.source_index.search("webmate").first.full_gem_path
-      end
-      ['stylesheets', 'javascripts', 'images'].each do |dir|
-        environment.append_path(File.join(webmate_path, 'vendor', 'assets', dir))
+      # require assets from other gems
+      Gem::Specification.to_a.each do |gem_spec|
+        ['stylesheets', 'javascripts', 'images'].each do |dir|
+          assets_path = File.join(gem_spec.full_gem_path, 'vendor', 'assets', dir)
+          if Dir.exists?(assets_path)
+            environment.append_path(assets_path)
+          end
+        end
       end
 
       if config.compress_assets?

@@ -8,11 +8,11 @@ Installation
 
 Run
 
-    gem install alphasights-webmate-sprockets
+    gem install webmate-sprockets
 
 Or add
 
-    gem 'alphasights-webmate-sprockets', require: 'webmate/sprockets'
+    gem 'webmate-sprockets', require: 'webmate/sprockets'
 
 to your Gemfile
 
