@@ -14,20 +14,11 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = s.name
 
+  s.add_dependency 'webmate'
+
   s.add_runtime_dependency 'sprockets',       '~> 2.10'
 
-  s.files = [
-    "Gemfile",
-    "webmate-sprockets.gemspec",
-    "lib/webmate-sprockets.rb",
-    "lib/webmate/sprockets.rb",
-    "lib/webmate/sprockets/asset_paths.rb",
-    "lib/webmate/sprockets/configuration.rb",
-    "lib/webmate/sprockets/helpers.rb",
-    "lib/webmate/sprockets/rake.rb",
-    "lib/webmate/sprockets/static_compiler.rb",
-    "lib/webmate/sprockets/version.rb"
-  ]
+  s.files = `git ls-files`.split($/)
 
   s.require_paths << "lib"
 end
